@@ -11,21 +11,21 @@ pipeline {
 		}
         stage('Clean and Install') {
             steps {
-                bat 'mvn clean install'
+                sh 'mvn clean install'
             }
         }
         stage ('Package'){
             steps {
-                bat 'mvn package'
+                sh 'mvn package'
              }
         }
 	stage ('Server'){
             steps {
                rtServer (
                  id: "Artifactory",
-                 url: 'http://localhost:8082/artifactory',
-                 username: 'ravish',
-                  password: 'YouPasswordHere',
+                 url: 'http://13.127.193.237:8081/artifactory',
+                 username: 'jenkins',
+                  password: 'root@123',
                   bypassProxy: true,
                    timeout: 300
                         )
